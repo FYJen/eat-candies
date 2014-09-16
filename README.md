@@ -1,12 +1,9 @@
 # Eat Candies
-=============
 
-![Eat_Candies Picture]()
+![Eat_Candies Picture](https://raw.githubusercontent.com/FYJen/eat-candies/master/img/instruction/eatCandies.png)
 
 ####About
-An interactive game to collect candies and dodge obstacles dropping from the sky.
-
-Player will have 3 life points to start with. With the game progress, different special items will drop from the sky, including `Nitro Boots`, `Vaccum Machine` and `Heart`. Each one of them will grant you special effect.
+An interactive game to collect candies and dodge obstacles dropping from the sky. Player will have 3 life points to start with. With the game progress, different special items will drop from the sky, including `Nitro Boots`, `Vaccum Machine` and `Heart`. Each one of them will grant you special effect.
 
 ####Requirements
 

@@ -15,7 +15,7 @@ FALLSPEED = 4
 
 # Scores
 SCORE_FILE = '.score.txt'
-REG_SCORE = 10
+CANDY_SCORE = 10
 VACUM_SCORE = 100
 BOOST_SCORE = 100
 HEART_SCORE = 1000
@@ -25,10 +25,8 @@ EFFECTDURATION = 8
 VACUM = False
 
 # Set up block info
-blockCounter = 0
-blockSize = 20
-newBlock = 25
+BLOCKSIZE = 20
+BLOCKDELAY = 25
 
 # Player life
 LIFE = 3
-

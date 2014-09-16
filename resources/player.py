@@ -12,7 +12,7 @@ class PlayerModel(object):
     """Player class.
     """
     def __init__(self):
-        """
+        """Initialize player's variable.
         """
         #Initialize window and block size.
         self.W_WIDTH = config.W_WIDTH
@@ -47,13 +47,17 @@ class PlayerModel(object):
 
     def increaseSpeed(self, num):
         """Increase current movement speed.
+
+        Args:
+            num - Number of speed to increase.
         """
         self.curMovementSpeed += num
 
     def decreaseSpeed(self, num):
         """Decrease current movement speed.
         """
-        self.curMovementSpeed -= num
+        if self.curMovementSpeed > 0:
+            self.curMovementSpeed -= num
 
     def teleport(self):
         """Speicial hotkey that will randomly move player around the screen.
@@ -120,6 +124,9 @@ class PlayerModel(object):
 
     def checkEffect(self, EnvModle):
         """Checks if the effect applied to the player has expired.
+
+        Args:
+            EnvModle - The EnvModle object.
         """
         if self.currentEffect and \
                 floor(pygame.time.get_ticks() / 1000) > self.effectTimeEnd:
@@ -127,6 +134,9 @@ class PlayerModel(object):
 
     def resetEffect(self, EnvModle):
         """Reverts the effect applied to the player.
+
+        Args:
+            EnvModle - The EnvModle object.
         """
         self.currentEffect = None
         self.effectTimeEnd = 0

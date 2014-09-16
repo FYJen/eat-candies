@@ -12,7 +12,7 @@ class EnvModle(object):
     """Environment Model.
     """
     def __init__(self):
-        """
+        """Initialize global game evnironment variables.
         """
         # Initialize world states.
         self.isVacum = config.VACUM
@@ -260,12 +260,20 @@ class EnvModle(object):
         self.windowSurface.blit(self.endingCandyImg, end_icon2)
 
     def printScore(self):
+        """Print score to the top left corner.
+        """
         self.drawText('Score: %s' % self.curScore, self.fontScore,
                       self.windowSurface, 10, 5)
         self.drawText('Top Score: %s' % self.topScore, self.fontScore,
                       self.windowSurface, 10, 25)
 
     def checkPlayerBlocksCollision(self, player):
+        """Check if any block has made contact with player. If a block has collided
+        the play, the function will determine what to do.
+
+        Args:
+            player - A player Model.
+        """
         for block in self.blocks[:]:
             if player.rect.colliderect(block.rect):
                 # Check to see if the player eats a special candy
@@ -307,6 +315,11 @@ class EnvModle(object):
                     self.removeBlock(block)
 
     def isGameDone(self, player):
+        """Check if the game ends.
+
+        Args:
+            player - A player Model.
+        """
         gameEnd = False 
         if len(player.life) == 0:
             if self.curScore > self.topScore:
@@ -316,6 +329,11 @@ class EnvModle(object):
         return gameEnd
 
     def applyPlayerImage(self, player):
+        """Apply player image.
+
+        Args:
+            player - A player Model.
+        """
         if player.currentEffect is None:
             self.windowSurface.blit(self.normalPlayerImg, player.rect)
         elif player.currentEffect == 'VACUM':
@@ -324,6 +342,11 @@ class EnvModle(object):
             self.windowSurface.blit(self.playerBootsImg, player.rect)
 
     def applyBlocksImage(self):
+        """Apply block image.
+
+        Args:
+            player - A player Model.
+        """
         for block in self.blocks:
             if block.type == 'VACUM':
                 self.windowSurface.blit(self.normalVacuumImg, block.rect)
@@ -337,13 +360,22 @@ class EnvModle(object):
                 self.windowSurface.blit(self.normalCandyImg, block.rect)
 
     def applyLifeImage(self, player):
+        """Apply player's life point image.
+
+        Args:
+            player - A player Model.
+        """
         for block in player.life:
             self.windowSurface.blit(self.lifeIcon, block.rect)
 
     def fillScreenBackground(self):
+        """Helper function to fill the background with black color.
+        """
         self.windowSurface.fill(self.BLACK)
 
     def increaseDifficulty(self):
+        """Increase game's difficulty.
+        """
         if self.blockDelay >= 21:
             self.blockDelay -= 4
 
@@ -353,23 +385,50 @@ class EnvModle(object):
         pygame.display.update()
 
     def playBackgroundMusic(self):
-        """Play the back ground 
+        """Play the background music.
         """
         pygame.mixer.music.play(-1, 0.0)
 
     def stopBackgroundMusic(self):
+        """Stop the background music.
+        """
         pygame.mixer.music.stop()
 
     def addBlock(self, *args, **kwargs):
+        """Add new block to the game environment.
+
+        Args:
+            args:
+                blockType - Type of the block, including 'REG', 'HEART', 'VACUM',
+                            and 'MOVEMENTBOOST'.
+            kwargs:
+                blockX - X coordinate for the block.
+                blockY - Y coordinate for the block.
+                status - The status of the block. It can be either 'FALL' or 'VACUM'.
+                         Default is 'FALL'.
+                width - The width length of the block.
+                height - The height of the block.
+        """
         self.blocks.append(BlockModel(*args, **kwargs))
 
     def removeBlock(self, block):
+        """Remove block from the game environment.
+
+        Args:
+            block - A BlockModel object.
+        """
         self.blocks.remove(block)
 
     def flushBlockList(self):
+        """Flush out all the blocks in the game environment. It is useful when the
+        player decides to continuously play the game again.
+        """
         self.blocks = []
 
     def flushCurScore(self):
+        """Reset the current score. It is useful when the player decides to
+        continuously play the game again.
+        """
         self.curScore = 0
 
     def addScore(self, scoreType='NORM'):
@@ -433,4 +492,10 @@ class EnvModle(object):
                         return
 
     def tick(self, num):
+        """Helper function to call the clock tick. By calling the .tick() with a
+        a number, the program will never run at more than 'number' frames per second.
+
+        Args:
+            num - Maximum number per frame.
+        """
         self.mainClock.tick(num)

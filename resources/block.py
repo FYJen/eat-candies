@@ -79,6 +79,12 @@ class BlockModel(object):
                          self.followSpeed) + 1
 
     def fallDown(self):
+        """Simulates block falling down by decrementing block's x and y coordinates.
+
+        Retunrs:
+            A boolean. If True, block has fallen outside of the windowns, indicating
+            that we should remove it. Else, keep it.
+        """
         shouldBeRemoved = False
         self.rect.top += self.fallSpeed
         if self.rect.top >= self.W_WIDTH:

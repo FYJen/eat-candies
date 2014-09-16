@@ -1,3 +1,4 @@
+.DS_Store
 .score.txt
 .score
 *.pyc

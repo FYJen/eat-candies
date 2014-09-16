@@ -183,8 +183,8 @@ class EnvModle(object):
         halfHeight = self.W_HEIGHT / 2
 
         # Print headers.
-        self.drawText('Eat All the Candy ', self.font, self.windowSurface,
-                      quarterWidth - 25, (self.W_HEIGHT / 3) - 110)
+        self.drawText('Eat Candies', self.font, self.windowSurface,
+                      quarterWidth + 26, (self.W_HEIGHT / 3) - 110)
         self.drawText('Press Enter key to start.', self.font, self.windowSurface,
                       quarterWidth - 65, (self.W_HEIGHT / 3) - 65)
         
@@ -202,28 +202,28 @@ class EnvModle(object):
         candy_icon = pygame.Rect(quarterWidth - 43, halfHeight - 10, self.blockSize,
                                  self.blockSize)
         self.windowSurface.blit(self.normalCandyImg, candy_icon)
-        self.drawText(":  When you see candies, go nuts! Eat them all", self.fontInstruct,
+        self.drawText(":  Candies! Go nuts! Eat them all", self.fontInstruct,
                       self.windowSurface, quarterWidth - 9, halfHeight - 7)
         
         # Third instruction.
         brick_icon = pygame.Rect(quarterWidth - 43, halfHeight + 30, self.blockSize,
                                  self.blockSize)
         self.windowSurface.blit(self.brickImg, brick_icon)
-        self.drawText(":  Opps! You have to dodge me", self.fontInstruct,
+        self.drawText(":  Brick! You have to dodge it", self.fontInstruct,
                       self.windowSurface, quarterWidth - 7, halfHeight + 35)
         
         # Forth instruction.
         heart_icon = pygame.Rect(quarterWidth - 43, halfHeight + 70, self.blockSize,
                                  self.blockSize)
         self.windowSurface.blit(self.heartImg, heart_icon)
-        self.drawText(":  I am the heart! I can revive you", self.fontInstruct,
+        self.drawText(":  Heart! It gives you extra life point", self.fontInstruct,
                       self.windowSurface, quarterWidth - 7, halfHeight + 72)
         
         # Fifth instruction.
         vacum_icon = pygame.Rect(quarterWidth - 43, halfHeight + 110, self.blockSize,
                                  self.blockSize)
         self.windowSurface.blit(self.normalVacuumImg, vacum_icon)
-        self.drawText(":  I am a vaccum cleaner. I love candies. Num Num Num",
+        self.drawText(":  Vaccum cleaner! It will collect candies for you",
                       self.fontInstruct, self.windowSurface, quarterWidth - 7,
                       halfHeight + 114)
         
@@ -231,7 +231,7 @@ class EnvModle(object):
         boost_icon = pygame.Rect(quarterWidth - 43, halfHeight + 150, self.blockSize,
                                  self.blockSize)
         self.windowSurface.blit(self.normalMoveBoostImg, boost_icon)
-        self.drawText(":  I am nitro boots. I grant you mobility", self.fontInstruct,
+        self.drawText(":  Nitro boots. It grants you mobility", self.fontInstruct,
                       self.windowSurface, quarterWidth - 6, halfHeight + 155)
 
     def printEnding(self):
@@ -470,7 +470,7 @@ class EnvModle(object):
         """
         try:
             with open(self.scoreFile, "r+") as f:
-                if self.curScore > self.topScore:
+                if self.curScore >= self.topScore:
                     f.write(str(self.curScore))
         except IOError:
             with open(self.scoreFile, "w") as f:

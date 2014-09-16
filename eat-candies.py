@@ -14,7 +14,7 @@ from pygame.locals import *
 from resources import *
 
 def main():
-    """
+    """Main game loop.
     """
     # Safe and easiest way to load all pygame models.
     pygame.init()
